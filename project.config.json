@@ -1,0 +1,13 @@
+{
+  "miniprogramRoot": "./dist/weapp",
+  "projectname": "project-init",
+  "description": "jikebao platform",
+  "appid": "wx3100324a9b073ebe",
+  "setting": {
+    "urlCheck": false,
+    "es6": false,
+    "postcss": false,
+    "minified": false
+  },
+  "compileType": "miniprogram"
+}

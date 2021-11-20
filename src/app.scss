@@ -1,0 +1,378 @@
+body, page {
+  font-size: 28px;
+  background: #F8F8F8;
+}
+
+scroll-view, text, view, picker, input, textarea, button, body, image, div, p, span {
+  box-sizing: border-box;
+}
+
+button, button:after, button:before, .button-hover {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: none;
+  line-height: inherit;
+  font-size: inherit;
+  color: inherit;
+  background: transparent;
+  overflow: inherit;
+}
+
+.placeholder {
+  color: #888;
+}
+
+.fixed-top,
+.fixed-top-hide,
+.bg-mask {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  z-index: 100;
+}
+
+.fixed-top-hide {
+  z-index: -1;
+  opacity: 0;
+}
+
+.bg-mask {
+  bottom: 0;
+  background: rgba(0, 0, 0, .8);
+}
+
+.sty-reset {
+  font-size: inherit;
+  color: inherit;
+  background: transparent;
+}
+
+.bg-none {
+  background: transparent;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-left {
+  text-align: left;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.text-line1 {
+  @include text-line()
+}
+
+.text-line2 {
+  @include text-line(2)
+}
+
+.float-l {
+  float: left;
+}
+
+.float-r {
+  float: right;
+}
+
+.clear {
+  zoom: 1;
+}
+
+.clear:after {
+  content: "\0020";
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden;
+}
+
+.pre-wrap {
+  white-space: pre-wrap;
+}
+
+.break-all {
+  word-break: break-all;
+}
+
+.pos-r,
+.pos-rz {
+  position: relative;
+}
+
+.pos-rz {
+  z-index: 2;
+}
+
+.vtm {
+  vertical-align: middle;
+}
+
+.dis-b {
+  display: block;
+}
+
+.dis-i {
+  display: inline-block;
+}
+
+.dis-n {
+  display: none;
+}
+
+.border-f5 {
+  @extend %border-f5;
+}
+
+.bt-f5 {
+  @extend %bt-f5;
+}
+
+.bd-f5 {
+  @extend %bd-f5;
+}
+
+.flex-n {
+  @extend %flex-n;
+}
+
+.flex-b {
+  @extend %flex-b;
+}
+
+.flex-r {
+  @extend %flex-r;
+}
+
+.flex-c-c {
+  @extend %flex-c-c;
+}
+
+.flex-c {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.flex {
+  flex: 1;
+}
+
+.flex-hide {
+  flex: 1;
+  overflow: hidden;
+}
+
+.flex-auto {
+  position: relative;
+  flex: 1;
+  height: 100%;
+  @extend %over-auto;
+}
+
+.over-auto {
+  @extend %over-auto;
+}
+
+.screen {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  border-bottom: 2px solid #f5f5f5;
+  -webkit-overflow-scrolling: touch;
+}
+
+.curtain-info {
+  min-height: 300px;
+  max-height: 980px;
+  @extend %over-auto;
+}
+
+//taro-ui
+.at-float-layout__container,
+.at-float-layout .layout-body,
+.at-float-layout .layout-body__content {
+  min-height: auto;
+  max-height: 950px;
+  padding: 0;
+  background: #f5f5f5;
+}
+
+.at-curtain {
+  background: rgba(0, 0, 0, .8);
+}
+
+.at-curtain__container {
+  padding-top: 60px;
+}
+
+.pop-w90 {
+  .at-curtain__container,
+  .at-modal__container {
+    width: 90%;
+  }
+}
+
+.at-tabs {
+  height: auto;
+}
+
+.at-tabs__underline {
+  height: 0 !important;
+}
+
+.at-tabs__item--active {
+  font-weight: bold;
+  color: $c-red;
+}
+
+.at-tabs__item-underline {
+  width: 25%;
+  height: 2PX;
+  margin-left: 37.5%;
+  background: $c-red;
+}
+
+.screen-tabs.at-tabs {
+  position: relative;
+  height: 100%;
+
+  .at-tabs__item {
+    padding: 0 24px;
+    line-height: 90px;
+  }
+
+  .at-tabs__body {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 92px;
+    bottom: 0;
+  }
+
+  .at-tabs__header {
+    border-bottom: 2px solid $c-f5;
+  }
+
+  .at-tabs-pane {
+    position: relative;
+    width: 100vw;
+    height: 100%;
+    @extend %over-auto;
+  }
+}
+
+.at-input {
+  .r-btn {
+    width: 180px;
+    line-height: 50px;
+    border-radius: 5px;
+    font-size: 24px;
+    text-align: center;
+    color: #fff;
+  }
+}
+
+.input-error {
+  .at-input__title {
+    padding-left: 24px;
+    box-sizing: border-box;
+  }
+
+  .at-input__title--required {
+    padding-left: 0;
+  }
+
+  .at-input--error {
+    margin-bottom: 30px;
+  }
+
+  .error {
+    position: relative;
+    margin-top: -54px;
+    padding: 0 30px 30px 220px;
+    font-size: 24px;
+    color: $c-red;
+  }
+}
+
+.at-noticebar__content {
+  line-height: inherit;
+}
+
+.at-noticebar__content-text {
+  font-size: inherit;
+}
+
+//列表
+.g-list-r {
+  @include g-list();
+}
+
+.g-list-arr {
+  @include g-list($pd: 26px 14px 26px 26px);
+
+  .at-icon-chevron-right {
+    margin: 5px 0 0 10px;
+    color: #999;
+  }
+}
+
+.g-list-n {
+  @include g-list(n);
+}
+
+//阴影
+.g-shadow {
+  @include g-shadow();
+}
+
+//logo
+.g-logo {
+  @include g-logo(90);
+}
+
+.g-logo-r {
+  @include g-logo-r(90);
+}
+
+//提交按钮--拉通
+.btn-sty,
+.sub-btn .sub {
+  line-height: 70px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.btn-sty {
+  margin: 26px;
+  color: #fff;
+}
+
+.sub-btn {
+  @extend %flex-b;
+  padding: 26px;
+  color: #fff;
+
+  .sub {
+    width: 48%;
+  }
+
+  .sub1 {
+    @extend .sub;
+    border: 2px solid;
+    background: #fff;
+  }
+}

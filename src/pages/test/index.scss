@@ -1,0 +1,64 @@
+.bg1 {
+  background: linear-gradient(135deg, #FF9D68, #FF5D04);
+}
+
+.bg2 {
+  background: linear-gradient(135deg, #6EFF6E, #38CE54);
+}
+
+.bg3 {
+  background: linear-gradient(135deg, #70A6FF, #547BEB);
+}
+
+.bg4 {
+  background: linear-gradient(135deg, #FF7B82, #EA5E5D);
+}
+
+.bg5 {
+  background: linear-gradient(135deg, #D3B4FF, #B587F4);
+}
+
+.bg6 {
+  background: linear-gradient(135deg, #4ACEF5, #15B7E6);
+}
+
+.diy-form {
+  padding: 26px;
+
+  .at-input__title {
+    font-size: 30px;
+  }
+
+  .at-image-picker__choose-btn {
+    background: #fff;
+  }
+
+  .at-input {
+    margin-left: 0;
+    background: transparent;
+
+    input,
+    .v-input {
+      padding-left: 20px;
+      height: 60px;
+      line-height: 60px;
+      font-size: 28px;
+      background: #fff;
+    }
+
+    .at-icon-alert-circle {
+      padding-right: 12px;
+    }
+
+    .at-input__icon {
+      margin: 0;
+      padding-right: 10px;
+      height: 60px;
+      background: #fff;
+    }
+  }
+
+  .error {
+    padding-left: 190px;
+  }
+}

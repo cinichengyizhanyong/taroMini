@@ -1,0 +1,27 @@
+.g-fixed-btn {
+  position: fixed;
+  right: 20px;
+  bottom: 160px;
+  z-index: 10;
+
+  .fixed-btn {
+    position: relative;
+    @extend %flex-c-c;
+    @include g-logo-r($w: 84, $d: b);
+    line-height: 28px;
+    font-size: 22px;
+    padding: 0 20px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, .1);
+    color: #fff;
+    text-align: center;
+
+    &.iconfont {
+      font-size: 50px;
+    }
+  }
+
+  .fixed-img {
+    width: 84px;
+    margin-bottom: 20px;
+  }
+}

@@ -1,0 +1,51 @@
+.filter-area-box {
+  .filter-top {
+    position: relative;
+    line-height: 80px;
+  }
+
+  .area-btn-box {
+    padding-left: 20px;
+
+    .area-btn {
+      display: inline-block;
+      line-height: 50px;
+      padding: 4px 20px;
+      background: #ccc;
+      color: #fff;
+      font-size: 26px;
+      border-radius: 10px;
+      margin: 0 18px 10px 0;
+    }
+
+    .active {
+      background: $c-red;
+    }
+  }
+
+  .a-title {
+    font-size: 30px;
+    padding: 0 20px;
+    line-height: 80px;
+  }
+
+  .sub-warp {
+    width: 400px;
+    margin: 40px auto;
+
+    .sub-btn1 {
+      text-align: center;
+      height: 60px;
+      font-size: 36px;
+      border: 2px solid $c-red;
+      line-height: 60px;
+      border-radius: 20px 0 0 20px;
+    }
+
+    .sub-btn2 {
+      background: $c-red;
+      color: #fff;
+      border-radius: 0 20px 20px 0;
+    }
+  }
+}

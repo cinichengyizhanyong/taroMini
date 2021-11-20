@@ -1,0 +1,28 @@
+.left-line-warp {
+  line-height: 30px;
+
+  .iconfont {
+    font-size: 40px;
+  }
+
+  .line-more {
+    padding: 6px 20px 8px;
+    border-radius: 100px;
+    background: #000;
+  }
+}
+
+.left-line {
+  padding-left: 26px;
+
+  &:after {
+    content: '';
+    position: absolute;
+    top: 5%;
+    bottom: 5%;
+    left: 0;
+    width: 6px;
+    border-radius: 4px;
+    background: $c-red;
+  }
+}

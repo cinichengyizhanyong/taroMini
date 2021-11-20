@@ -1,0 +1,98 @@
+@for $i from 11 to 20 {
+  .f-#{$i} {
+    font-size: 2px*$i;
+  }
+}
+
+.w100 {
+  width: 100%;
+}
+
+.h100 {
+  height: 100%;
+}
+
+.vh100 {
+  height: 100vh;
+}
+
+.min-h {
+  min-height: 100vh;
+}
+
+.border-0 {
+  border: 0;
+}
+
+//间距
+.p-13 {
+  padding: 26px;
+}
+
+.ptb-13 {
+  @include pd($d: tb)
+}
+
+.plr-13 {
+  @include pd()
+}
+
+.p-10 {
+  padding: 20px;
+}
+
+.ptb-10 {
+  @include pd(20, $d: tb)
+}
+
+.plr-10 {
+  @include pd(20)
+}
+
+.pr-6 {
+  padding-right: 12px;
+}
+
+.pt-1 {
+  padding-top: 1px;
+}
+
+.pb-1 {
+  padding-bottom: 1px;
+}
+
+.pt-0 {
+  padding-top: 0;
+}
+
+.pb-0 {
+  padding-bottom: 0;
+}
+
+.mt-15 {
+  margin-top: 30px;
+}
+
+.mb-15 {
+  margin-bottom: 30px;
+}
+
+.mt-10 {
+  margin-top: 20px;
+}
+
+.mt-5 {
+  margin-top: 10px;
+}
+
+.mr-5 {
+  margin-right: 10px;
+}
+
+.ml-0 {
+  margin-left: 0;
+}
+
+.mr-0 {
+  margin-right: 0;
+}

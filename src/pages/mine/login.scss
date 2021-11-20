@@ -1,0 +1,32 @@
+.mine {
+  .top {
+    padding: 70px 0;
+    background: linear-gradient($c-red, #FEB5A4);
+
+    .head {
+      @include g-logo-r($w: 160, $d: '', $mg: 0 auto 30px);
+      border: 10px solid #fff;
+      overflow: hidden;
+    }
+  }
+
+  .login-btn, .wx-btn {
+    width: 94%;
+    height: 80px;
+    line-height: 80px;
+    margin: 60px 3% 0;
+    border: 0;
+    border-radius: 10px;
+    font-size: 30px;
+    font-weight: 800;
+    color: #fff;
+    background: #FE552E;
+  }
+
+  .wx-btn {
+    margin-top: 20px;
+    border: 1PX solid #FE552E;
+    color: #FE552E;
+    background: transparent;
+  }
+}

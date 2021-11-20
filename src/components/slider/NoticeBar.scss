@@ -1,0 +1,28 @@
+.notice-bar {
+  line-height: 60px;
+  padding-left: 40px;
+
+  .sty-reset {
+    padding: 0 24px;
+  }
+
+  .iconfont,
+  .at-icon {
+    position: absolute;
+    top: 50%;
+    font-size: 32px;
+    transform: translateY(-50%);
+  }
+
+  .iconfont {
+    left: 18px;
+  }
+
+  .at-icon {
+    right: 14px;
+  }
+}
+
+.notice-bar-more {
+  padding-right: 30px;
+}

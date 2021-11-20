@@ -1,0 +1,15 @@
+.breadcrumb {
+  @extend %flex-r;
+  @include pd(20, tb);
+  background: #fff;
+
+  .iconfont {
+    font-size: 32px;
+    padding-right: 10px;
+  }
+
+  .spacing {
+    @include pd(20);
+    color: #999;
+  }
+}

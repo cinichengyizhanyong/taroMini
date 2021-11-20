@@ -1,0 +1,125 @@
+%flex-n {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+%flex-b {
+  @extend %flex-n;
+  justify-content: space-between;
+}
+
+%flex-r {
+  @extend %flex-n;
+  align-items: center;
+}
+
+%flex-c-c {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: center;
+}
+
+%over-auto {
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+%border-f5 {
+  border: 2px solid $c-f5;
+}
+
+%bt-f5 {
+  border-top: 2px solid $c-f5;
+}
+
+%bd-f5 {
+  border-bottom: 2px solid $c-f5;
+}
+
+@mixin text-line($num: 1) {
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  @if ($num == 1) {
+    white-space: nowrap;
+  } @else {
+    display: -webkit-box;
+    -webkit-line-clamp: $num;
+
+    /*! autoprefixer: ignore next */
+    -webkit-box-orient: vertical;
+  }
+}
+
+@function direction($d: '') {
+  @if ($d == t) {
+    @return top;
+  }
+  @if ($d == r) {
+    @return right;
+  }
+  @if ($d == b) {
+    @return bottom;
+  }
+  @if ($d == l) {
+    @return left;
+  }
+
+  @return ''
+}
+
+@mixin g-shadow($radius: 5, $shadow: 10, $opa: .1, $bg: #fff) {
+  @if ($radius!=0) {
+    border-radius: #{$radius}px;
+  }
+  box-shadow: 0 0 #{$shadow}px rgba(0, 0, 0, $opa);
+  background: $bg;
+  overflow: hidden;
+}
+
+@mixin pd($size: 26, $d: lr, $attr: pd) {
+  $a: if($attr == pd, padding, margin);
+
+  @if ($d == lr) {
+    #{$a}-left: #{$size}px;
+    #{$a}-right: #{$size}px;
+  }
+  @if ($d == tb) {
+    #{$a}-top: #{$size}px;
+    #{$a}-bottom: #{$size}px;
+  }
+}
+
+@mixin mg($size: 26, $d: lr) {
+  @include pd($size, $d, mg)
+}
+
+@mixin g-list($align: r, $pd: 26px, $mg: 0, $bd: b, $bg: #fff) {
+  @if ($align!='') {
+    @extend %flex-#{$align};
+  }
+  padding: $pd;
+  @if ($mg!=0) {
+    margin: $mg;
+  }
+  @if ($bd!=0) {
+    border-#{if($bd == t, top, bottom)}: 2px solid $c-f5;
+  }
+  background: $bg;
+}
+
+@mixin g-logo($w, $r: 5, $mg: 20px, $h: 0, $d: r) {
+  width: #{$w}px;
+  height: #{if($h == 0, $w, $h)}px;
+  @if ($mg!=0) {
+    margin#{if($d != '', -#{direction($d)}, '')}: #{$mg};
+  }
+  @if ($r!=0) {
+    border-radius: #{$r}px;
+  }
+}
+
+@mixin g-logo-r($w, $mg: 20px, $h: 0, $d: r) {
+  @include g-logo($w, 600, $mg, $h, $d)
+}

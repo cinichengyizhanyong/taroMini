@@ -1,0 +1,49 @@
+.tabs-x,
+.tabs-x-btn {
+  white-space: nowrap;
+  overflow-x: auto;
+
+  &::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+  }
+}
+
+.tabs-x,
+.tabs-x-mul {
+  line-height: 80px;
+
+  .tabs-active {
+    font-weight: bold;
+    color: $color-main;
+
+    .tab-line {
+      position: absolute;
+      left: 35%;
+      right: 35%;
+      bottom: 0;
+      height: 5px;
+      background: $color-main;
+    }
+  }
+}
+
+.tabs-x-btn {
+  padding: 20px 26px;
+  line-height: 50px;
+
+  .dis-i {
+    margin-right: 20px;
+    border-radius: 10px;
+    border: 2px solid $c-f5;
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+
+  .tabs-active {
+    border: 2px solid;
+    color: $color-main;
+  }
+}

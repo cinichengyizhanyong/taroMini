@@ -1,0 +1,26 @@
+.check,
+.check-default {
+  position: relative;
+  border: 2px solid #ddd;
+  margin-right: 20px;
+  background: #fff;
+}
+
+.check-default {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+}
+
+.checked:after {
+  content: '';
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  width: 25%;
+  height: 50%;
+  border: 3px solid $color-main;
+  border-top: 0;
+  border-left: 0;
+  transform: translate(-50%, -50%) rotate(45deg);
+}

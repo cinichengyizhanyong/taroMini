@@ -1,0 +1,15 @@
+.filter-second {
+  line-height: 48px;
+}
+
+.left-warp {
+  width: 200px;
+  height: 100%;
+  border-right: 2px solid $c-f5;
+}
+
+.right-line {
+  font-size: 30px;
+  padding: 20px;
+  @extend %bd-f5;
+}
