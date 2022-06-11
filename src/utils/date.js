@@ -45,18 +45,18 @@ export const timeDiffer = time => {
   if (!time) {
     return null
   }
-  
-  return new Date(time.replace(/-/g, '/')) - new Date()
+
+  return getNewTime(time) - new Date()
 }
 
 export const timeSpace = (time) => {
   const date = timeDiffer(time)
-  
+
   if (date > 0) {
     const sDay = date % _day
     const sHours = sDay % _hours
     const sMinutes = sHours % _minutes
-    
+
     const day = Math.floor(date / _day)
     const hours = Math.floor(sDay / _hours)
     const minutes = Math.floor(sHours / _minutes)
@@ -70,11 +70,11 @@ export const timeSpace = (time) => {
 export const getDays = (year, month) => {
   const days = []
   const d = new Date(year, month, 0)
-  
+
   for (let i = 1; i <= d.getDate(); i++) {
     days.push(i)
   }
-  
+
   return days
 }
 

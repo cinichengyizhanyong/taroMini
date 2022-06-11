@@ -130,18 +130,19 @@ export function useAuthPhone() {
  * @param fields<[string] | [{tip, name, [other]}]>
  * @param tips?<[string]>
  * @param preTip?<bool>
+ * @param phoneKey<string>
  * @returns {*}
  */
-export const isAllInput = (value, fields, tips, preTip = true) => {
+export const isAllInput = ({ value, fields, tips, preTip = true, phoneKey = 'phone' }) => {
   return fields.every((item, index) => {
     const isStr = typeof item === 'string'
     const key = isStr ? item : item.name
     const tip = isStr ? tips[index] : item.tip
     const val = value[key]
 
-    if (key === 'phone' ? vailPhone(val) : val) {
+    if (key === phoneKey ? vailPhone(val) : val) {
       return true
     }
-    showMsg(`${preTip ? `请输入${tip}` : tip}！`)
+    showMsg(`${preTip ? `请${item.isChoose ? '选择' : '输入'}${tip}` : tip}！`)
   })
 }

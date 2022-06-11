@@ -4,7 +4,7 @@ const config = {
   env: {
     TAG: process.env.TAG
   },
-  projectName: `home-${process.env.TAG || 'dev'}`,
+  projectName: `${process.env.TAG || 'dev'}`,
   date: '2020-8-24',
   designWidth: 750,
   deviceRatio: {
@@ -21,12 +21,9 @@ const config = {
     '@inc': path.resolve(__dirname, '..', 'src/inc'),
     '@img': path.resolve(__dirname, '..', 'src/resource/img'),
     '@style': path.resolve(__dirname, '..', 'src/resource'),
-    '@config': path.resolve(__dirname, '..', 'src/config'),
-    
-    '@indexWidget': path.resolve(__dirname, '..', 'src/pages/index/widget'),
-    '@mineWidget': path.resolve(__dirname, '..', 'src/pages/mine/widget')
+    '@config': path.resolve(__dirname, '..', 'src/config')
   },
-  
+
   sass: {
     resource: [
       path.resolve(__dirname, '..', 'src/resource/theme.scss'),
@@ -34,12 +31,12 @@ const config = {
     ],
     projectDirectory: path.resolve(__dirname, '..')
   },
-  
+
   defineConstants: {
     TAG: JSON.stringify(process.env.TAG)
   },
   plugins: [],
-  
+
   copy: {
     patterns: [],
     options: {}
@@ -69,6 +66,7 @@ const config = {
   h5: {
     publicPath: '/',
     staticDirectory: 'static',
+    esnextModules: ['taro-ui'],
     postcss: {
       autoprefixer: {
         enable: true,

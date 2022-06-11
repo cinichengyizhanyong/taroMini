@@ -1613,13 +1613,13 @@ function Index() {
       ]
     }
   ]
-  
+
   const breadcrumb = [
     { icon: 'at-icon at-icon-settings', text: '首页', onTap: () => console.log(1) },
     { text: '新闻', onTap: () => console.log(2) },
     { icon: 'at-icon at-icon-settings', text: '详情', onTap: () => console.log(3) }
   ]
-  
+
   const foot = [
     { text: '发现好券', icon: 'at-icon at-icon-settings c-lan', name: 'info' },
     { text: '促销活动', icon: 'at-icon at-icon-settings c-red', name: 'list' },
@@ -1627,7 +1627,7 @@ function Index() {
     { text: '进入首页', icon: 'at-icon at-icon-settings c-red', name: 'discover' },
     { text: '名片夹', icon: 'at-icon at-icon-settings c-lan', name: 'mine' }
   ]
-  
+
   const iconText = {
     left: [
       { text: '名片', icon: 'at-icon at-icon-settings', name: 'card', share: { cid: 1 } },
@@ -1639,7 +1639,7 @@ function Index() {
       { text: '我的名片', bg: 'bg-f5' }
     ]
   }
-  
+
   const tabsx = [{ id: 1, name: 'tab1' }, { id: 2, name: 'tab2' }]
   const onSubmit = async () => {
     // 一种图片
@@ -1648,21 +1648,21 @@ function Index() {
     某张图片上传失败，清空失败的图片
     isFail && onUpdate('img', imgArr)
     */
-    
+
     // 多种图片
     /* 都是多图
     const { imgRes } = await uploadImagesObj(value, ['img1', 'img2'], onUpdate)
    */
-    
+
     onError({ phone: 1, start_time: 1, type: 1, sex1: 1, sex2: 1, img1: 1 }, '请输入完整！')
     console.log(111, value, other)
-    
+
     return
     // 单图+多图上传
     const { imgRes } = await uploadImagesObj(value, [{ key: 'img1', single: true }, { key: 'img2' }], onUpdate)
     console.log('submitData', { ...value, ...imgRes })
   }
-  
+
   return (
     <BaseView>
       <View className='flex-r'>
@@ -1685,7 +1685,7 @@ function Index() {
         />
       </View>
       {/***********************form + UpLoadImage*************************/}
-      
+
       <View className='diy-form input-error mt-15 pb-1 bg-f'>
         <AtInput
           name='phone'
@@ -1697,7 +1697,7 @@ function Index() {
           onChange={onChange.phone}
         />
         {other.phone && <View className='error'>请按正确格式填写您的手机号！</View>}
-        
+
         <CheckRadio
           label='性别'
           required
@@ -1706,7 +1706,7 @@ function Index() {
           items={tabsx}
           onChange={ck => value.sex1 = ck}
         />
-        
+
         <CheckBox
           label='性别'
           required
@@ -1715,7 +1715,7 @@ function Index() {
           items={tabsx}
           onChange={ck => value.sex2 = ck}
         />
-        
+
         <DateTime
           label='开播时间'
           required
@@ -1724,7 +1724,7 @@ function Index() {
           tip={other.start_time ? '请选择开播时间!' : ''}
           onSure={e => value.start_time = e}
         />
-        
+
         <PickerSel
           required
           items={type}
@@ -1734,7 +1734,7 @@ function Index() {
           tip={other.type ? '请选择直播类型!' : ''}
           onChange={e => value.type = e.val}
         />
-        
+
         <UpLoadImage
           files={[
             'http://rs-demo.jc001.cn/media/597/597/2020/de256631181b524d24cf8151a714ec62.jpg',
@@ -1745,7 +1745,7 @@ function Index() {
           tip={other.img1 ? '请上传图片!' : ''}
           onChange={files => value.img1 = files}
         />
-        
+
         <UpLoadImage
           required
           files={['http://rs-demo.jc001.cn/media/597/597/2020/de256631181b524d24cf8151a714ec62.jpg']}
@@ -1753,97 +1753,97 @@ function Index() {
           label='上传图片'
           onChange={files => value.img2 = files}
         />
-        
-        <Button className='btn-sty bg-red' onClick={onSubmit}>上传图片</Button>
+
+        <Button className='btn-1-sty bg-red' onClick={onSubmit}>上传图片</Button>
       </View>
       {/*************************TabsX***********************/}
-      
+
       <Test text='TabsX'>
         <TabsX items={tabsx} />
       </Test>
-      
+
       <Test text='TabsX'>
         <TabsX items={tabsx} isBtn />
       </Test>
       {/**********************Search**************************/}
-      
+
       <Test text='Search'>
         <Search placeholder='请输入' onConfirm={e => console.log(111, e)} />
       </Test>
-      
+
       <Test text='Search-不可输入'>
         <Search placeholder='请输入' isText hasBtn={false} />
       </Test>
-      
+
       <Test text='Search'>
         <Search placeholder='请输入' hasBtn />
       </Test>
       {/*********************新闻详情导航***************************/}
-      
+
       <Test text='Breadcrumb'>
         <Breadcrumb items={breadcrumb} />
       </Test>
-      
+
       <Test text='TitImg'>
         <TitImg tit='为您推荐' />
       </Test>
-      
+
       <Test text='TitImg'>
         <TitImg tit='为您推荐' type='o' />
       </Test>
       {/*********************LeftLine***************************/}
-      
+
       <Test text='LeftLine'>
         <LeftLine text='为您推荐' />
       </Test>
-      
+
       <Test text='LeftLine'>
         <LeftLine text='为您推荐' hasMore />
       </Test>
       {/********************IconNav****************************/}
-      
+
       <Test text='IconNav'>
         <IconNav
           items={foot} bgArr={[1, 2, 3, 4, 4, 3, 2, 1]} bgNum={8}
         />
       </Test>
-      
+
       <Test text='IconNav'>
         <IconNav items={foot} imgKey='image' />
       </Test>
-      
+
       <Test text='IconNav'>
         <IconNav type='foot' items={foot} column={5} />
       </Test>
-      
+
       <Test text='IconText'>
         <IconText leftWidth={100} leftArr={iconText.left} rightArr={iconText.right} active='card' />
       </Test>
       {/**********************骨架屏**************************/}
-      
+
       <View className='p-13 f-19 bold text-center bg-f'>骨架屏 rows：默认1行</View>
-      
+
       <View>slider</View>
       <Skeleton type='slider' />
-      
+
       <View>row - btn</View>
       <Skeleton type='row' />
-      
+
       <View>row - no btn</View>
       <Skeleton type='row' hasBtn={false} />
-      
+
       <View>column</View>
       <Skeleton type='column' />
-      
+
       <View>list</View>
       <Skeleton type='list' />
-      
+
       <View>list rightList</View>
       <Skeleton type='list' rightList />
-      
+
       <View>list - leftImg: false</View>
       <Skeleton type='list' leftImg={false} />
-      
+
       <View>detail</View>
       <Skeleton type='detail' />
     </BaseView>

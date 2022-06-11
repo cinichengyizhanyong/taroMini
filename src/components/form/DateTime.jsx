@@ -10,7 +10,7 @@ const getPickerViewList = () => {
   const monthList = []
   const hourList = []
   const minuteList = []
-  
+
   for (let i = 1970; i <= 2100; i++) {
     yearList.push(i)
   }
@@ -23,7 +23,7 @@ const getPickerViewList = () => {
   for (let i = 0; i <= 59; i++) {
     minuteList.push(i)
   }
-  
+
   return {
     yearList,
     monthList,
@@ -34,7 +34,7 @@ const getPickerViewList = () => {
 
 function DateTime(
   {
-    className = 'at-input f-16', txtSty = '',
+    className = '', defaultClass = 'at-input f-16', txtSty = '',
     initValue, label, placeholder,
     required, error, tip, showArr,
     minDate, maxDate,
@@ -55,7 +55,7 @@ function DateTime(
     hourList: [], //时 -下拉
     minuteList: [] //分 -下拉
   })
-  
+
   useEffect(() => {
     const t = formatTime(initValue, 'sf')
     current.current = t
@@ -65,12 +65,12 @@ function DateTime(
       setTime(t)
     }
   }, [initValue])
-  
+
   useEffect(() => {
     const date = timeParse(minDate, true)
     const { yearList, monthList, hourList, minuteList } = getPickerViewList()
     const dayList = getDays(date.year, date.month)
-    
+
     setState({
       yearList,
       monthList,
@@ -78,7 +78,7 @@ function DateTime(
       hourList,
       minuteList
     })
-    
+
     setTimeout(() => {
       setValues([
         yearList.indexOf(date.year),
@@ -89,12 +89,12 @@ function DateTime(
       ])
     })
   }, [minDate])
-  
+
   const onClose = () => {
     limit.current = false
     setShow(false)
   }
-  
+
   const onOpen = () => {
     setShow(true)
     if (!limit.current) {
@@ -110,7 +110,7 @@ function DateTime(
       minuteList.indexOf(date.minutes)
     ])
   }
-  
+
   const onSureHandel = () => {
     let t = current.current
     limit.current = false
@@ -125,24 +125,24 @@ function DateTime(
     setTime(t)
     onSure(t)
   }
-  
+
   const onChange = e => {
     const v = e.detail.value
     const year = state.yearList[v[0]]
     const month = state.monthList[v[1]]
     const dayList = getDays(year, month)
-    
+
     current.current = `${year}-${numLen(month)}-${numLen(dayList[v[2]])} `
     current.current += `${numLen(state.hourList[v[3]])}:${numLen(state.minuteList[v[4]])}`
     state.dayList = dayList
     setState({ ...state })
     setValues(v)
   }
-  
+
   return (
     <>
       <View
-        className={`flex-r ${className}`}
+        className={`flex-r ${defaultClass} ${className}`}
         onClick={onOpen}
       >
         {label &&
@@ -152,9 +152,9 @@ function DateTime(
           {label}
         </View>
         }
-        
+
         {children}
-        
+
         <View className='flex'>
           <View className='flex-r v-input pr-6'>
             <View
@@ -162,7 +162,7 @@ function DateTime(
             >
               {time || placeholder}
             </View>
-            
+
             <View
               className={time ? 'plr-13 at-icon at-icon-close-circle f-19' : ''}
               onClick={e => {
@@ -171,22 +171,22 @@ function DateTime(
                 onSure('')
               }}
             />
-            
+
             {error &&
             <View className='at-icon at-icon-alert-circle f-16 c-red' />
             }
-            
+
             {showArr &&
             <View className='at-icon at-icon-chevron-right f-18 c-9' />
             }
           </View>
-          
+
           {tip &&
           <View className='mt-5 mr-10 f-12 c-red'>{tip}</View>
           }
         </View>
       </View>
-      
+
       {show &&
       <AtFloatLayout
         isOpened
@@ -196,7 +196,7 @@ function DateTime(
           <View className='flex' onClick={onClose}>取消</View>
           <View className='flex text-right' onClick={onSureHandel}>确定</View>
         </View>
-        
+
         <PickerView
           className='text-center bg-f'
           style='height: 300px; line-height: 50px;'

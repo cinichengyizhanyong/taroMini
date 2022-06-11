@@ -1,19 +1,38 @@
 import { Swiper, SwiperItem } from '@tarojs/components'
 import { pxTransform } from '@util/style'
 
+/**
+ * @param className
+ * @param height
+ * @param style
+ * @param autoPlay
+ * @param circular
+ * @param indicatorDots
+ * @param indicatorColor
+ * @param indicatorActiveColor
+ * @param interval
+ * @param duration
+ * @param vertical
+ * @param items<[string] | [{ imgKey }]>
+ * @param imgKey
+ * @param onClick
+ * @param renderItem
+ * @returns {JSX.Element|null}
+ * @constructor
+ */
 function SwipeWrap(
   {
-    className = '', autoPlay = true, circular = true,
+    className = '', height = 380, style = {},
+    autoPlay = true, circular = true,
     indicatorDots = true, indicatorColor = 'rgba(255,255,255)', indicatorActiveColor = '#ddd',
     interval = 3000, duration = 1000, vertical,
-    height = 380, items = [], imgKey = 'image', onClick, renderItem
+    items = [], imgKey = 'image', onClick, renderItem
   }
 ) {
   let imgArr = []
-  const _h = pxTransform(height)
-  
+
   if (!items.length) return null
-  
+
   return (
     <Swiper
       className={className}
@@ -25,18 +44,18 @@ function SwipeWrap(
       interval={interval}
       duration={duration}
       vertical={vertical}
-      style={`height:${_h}`}
+      style={{ height: pxTransform(height), ...style }}
     >
       {items.map((item, index) => {
         const image = item[imgKey] || item
         imgArr.push(image)
-        
+
         return (
           <SwiperItem
             key={index}
             onClick={() => onClick && onClick(item, index, imgArr)}
           >
-            {renderItem(item, { index, image, heightStr: _h })}
+            {renderItem(item, { index, image })}
           </SwiperItem>
         )
       })}

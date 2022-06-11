@@ -3,9 +3,28 @@ import { View } from '@tarojs/components'
 import { pxTransform } from '@util/style'
 import './Check.scss'
 
+/**
+ * @param className
+ * @param defaultClass
+ * @param label
+ * @param required
+ * @param items<[string | number] | [{[checkKey], [itemKey], [other]}]>
+ * @param itemKey
+ * @param column
+ * @param checked<[string | number]>
+ * @param checkKey
+ * @param width
+ * @param radius
+ * @param error
+ * @param tip
+ * @param onChange
+ * @param children
+ * @returns {JSX.Element}
+ * @constructor
+ */
 function CheckBox(
   {
-    className = 'at-input f-16', label, required,
+    className = '', defaultClass = 'at-input f-16', label, required,
     items = [], itemKey = 'name',
     column = 2, checked = [], checkKey = 'id',
     width = 40, radius = 6,
@@ -17,13 +36,13 @@ function CheckBox(
 ) {
   const w = pxTransform(width)
   const [check, setCheck] = useState(checked)
-  
+
   useEffect(() => {
     if (checked.length) {
       setCheck(checked)
     }
   }, [checked])
-  
+
   const onTap = item => {
     const key = item[checkKey] || item
     const ckInd = check.indexOf(key)
@@ -35,9 +54,9 @@ function CheckBox(
     setCheck([...check])
     onChange(check)
   }
-  
+
   return (
-    <View className={`flex-r ${className}`}>
+    <View className={`flex-r ${defaultClass} ${className}`}>
       {label &&
       <View
         className={`at-input__title ${required ? 'at-input__title--required' : ''}`}
@@ -45,8 +64,9 @@ function CheckBox(
         {label}
       </View>
       }
+
       {children}
-      
+
       <View className='flex'>
         <View className='flex-r pr-6'>
           <View className='flex-r flex'>
@@ -59,7 +79,7 @@ function CheckBox(
                   onClick={() => onTap(item)}
                 >
                   <View
-                    className={`check dis-i vtm ${check.includes(item[checkKey] || item) ? 'checked' : ''}`}
+                    className={`check dis-i vertical-align-m ${check.includes(item[checkKey] || item) ? 'checked' : ''}`}
                     style={`width: ${w}; height: ${w}; border-radius: ${pxTransform(radius)}`}
                   />
                   {item[itemKey] || item}
@@ -67,12 +87,12 @@ function CheckBox(
               )
             })}
           </View>
-          
+
           {error &&
           <View className='at-icon at-icon-alert-circle f-16 c-red' />
           }
         </View>
-        
+
         {tip &&
         <View className='mt-5 mr-10 f-12 c-red'>{tip}</View>
         }

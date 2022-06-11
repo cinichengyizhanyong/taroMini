@@ -6,11 +6,11 @@ export * from './use-reqeust'
 export const makeStore = function (defStore) {
   return (store = defStore, normalizer) => {
     const [state, setState] = useState(store.get())
-    
+
     function updateState() {
       setState(normalizer ? normalizer(store.get()) : store.get())
     }
-    
+
     useEffect(() => {
       store.subscribe(updateState)
       return () => store.unsubscribe(updateState)
@@ -31,12 +31,12 @@ export function cacheAsyncData(key, asyncCall, refresh) {
     console.log(`cache: hit async call '${key}'`)
     return wrapPromiseRs(cache[key])
   }
-  
+
   if (dataLoading[key] && cache[key]) {
     console.log(`cache: is loading '${key}'`)
     return wrapPromiseRs(cache[key])
   }
-  
+
   console.log(`cache: gen data '${key}'`)
   dataLoading[key] = true
   cache[key] = asyncCall().then(data => {
@@ -46,9 +46,10 @@ export function cacheAsyncData(key, asyncCall, refresh) {
   }).catch((err) => {
     console.log('error: asyncCall', err)
     dataLoading[key] = false
+    cache[key] = false
     throw err
   })
-  
+
   return cache[key]
 }
 

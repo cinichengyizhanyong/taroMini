@@ -1,4 +1,3 @@
-import { useRef } from 'react'
 import { Canvas, View } from '@tarojs/components'
 import { hideLoading, showLoading } from '@util/message'
 import { uploadFile } from '@inc/api'
@@ -12,10 +11,8 @@ function SpotImg(
     }
   }
 ) {
-  const viewEl = useRef()
-  
   const onSpot = () => {
-    chooseImg(viewEl, res => {
+    chooseImg(res => {
       if (!isUpload) {
         onChoose(res)
         return
@@ -30,16 +27,15 @@ function SpotImg(
       })
     }, count)
   }
-  
+
   return (
     <>
       <Canvas
         className='photo_canvas'
         type='2d'
-        ref={viewEl}
         style='position: fixed; left: -9999px; opacity: 0; width: 750px; height: 2730px;'
       />
-      
+
       <View
         className={className}
         onClick={onSpot}

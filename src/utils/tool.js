@@ -69,7 +69,7 @@ export function removeStore(key) {
 }
 
 // 复制
-export function copy(data) {
+export function onCopy(data) {
   Taro.setClipboardData({ data }).then(() => {
     Taro.getClipboardData().then(res => console.log(res.data))
   })

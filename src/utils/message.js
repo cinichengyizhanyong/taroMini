@@ -60,16 +60,16 @@ export const showErrs = err => {
 }
 
 //返回上页并刷新数据
-export const pageRefresh = (fn, refreshKey = 'backRefresh') => {
+export const pageRefresh = (fn, remove = true, refreshKey = 'backRefresh') => {
   getStore(refreshKey, res => {
     if (res && fn) {
       fn()
-      removeStore(refreshKey)
+      remove && removeStore(refreshKey)
     }
   })
 }
 
-export const usePageRefresh = refreshKey => {
+export const usePageRefresh = (remove, refreshKey) => {
   const [reqCount, setReqCount] = useState(1)
 
   const refresh = useCallback(() => {
@@ -78,7 +78,7 @@ export const usePageRefresh = refreshKey => {
 
   useDidShow(
     () => pageRefresh(
-      () => refresh(), refreshKey
+      () => refresh(), remove, refreshKey
     )
   )
 

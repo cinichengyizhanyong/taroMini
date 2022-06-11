@@ -1,7 +1,7 @@
 import { Button, View } from '@tarojs/components'
 import { AtModal } from 'taro-ui'
 import { isH5 } from '@config'
-import { go } from '@inc/router'
+import { goto } from '@inc/router'
 import { rMine } from '@inc/router/url'
 import { handlePhone, showAuthPhone } from '@inc/store/auth'
 import './Auth.scss'
@@ -9,7 +9,7 @@ import './Auth.scss'
 function Phone({ isOpened, mustCheckPhone, loginMsg = {} }) {
   const login = () => {
     showAuthPhone(false)
-    go(rMine.login)()
+    goto(rMine.login)
   }
   return (
     <AtModal

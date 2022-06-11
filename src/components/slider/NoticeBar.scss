@@ -1,25 +1,20 @@
 .notice-bar {
-  line-height: 60px;
-  padding-left: 40px;
+  line-height: 90px;
+  padding-left: 30px;
 
   .sty-reset {
-    padding: 0 24px;
+    padding: 0 30px 0 50px;
   }
 
-  .iconfont,
   .at-icon {
     position: absolute;
     top: 50%;
-    font-size: 32px;
     transform: translateY(-50%);
   }
 
-  .iconfont {
-    left: 18px;
-  }
-
-  .at-icon {
+  .at-icon-chevron-right {
     right: 14px;
+    font-size: 32px;
   }
 }
 

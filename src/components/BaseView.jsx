@@ -6,33 +6,33 @@ import { getUserAsync } from '@inc/store/user'
 
 function BaseView(
   {
-    className = '', pageSty = '', renderHeader, renderFooter, children,
+    className = '', pageClass = '', style = '', renderHeader, renderFooter, children,
     checkPhone, mustCheckPhone, loginMsg, checkAvatar, mustCheckAuth,
     floatBtnItems, showBack
   }
 ) {
   const isHF = renderHeader || renderFooter
-  
+
   useEffect(() => {
     getUserAsync()
   }, [])
-  
+
   return (
     <View
       className={`screen ${isHF ? 'flex-c' : 'over-auto'} ${className}`}
-      style={pageSty}
+      style={style}
     >
       {renderHeader}
-      
+
       {isHF
-        ? <View className='flex-auto'>
+        ? <View className={`flex-auto ${pageClass}`}>
           {children}
         </View>
         : children
       }
-      
+
       {renderFooter}
-      
+
       <Auth
         checkPhone={checkPhone}
         mustCheckPhone={mustCheckPhone}
@@ -40,7 +40,7 @@ function BaseView(
         checkAvatar={checkAvatar}
         mustCheckAuth={mustCheckAuth}
       />
-      
+
       <FloatBtn
         items={floatBtnItems}
         showBack={showBack}

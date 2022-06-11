@@ -14,18 +14,17 @@ export const showImg = (index, list, isUrl) => {
 
 /**
  * 选择图片
- * @param component
  * @param fn
  * @param count
  */
-export function chooseImg(component, fn, count = 1) {
+export function chooseImg(fn, count = 1) {
   Taro.chooseImage({
     count,
     sizeType: ['compressed'],
     sourceType: ['album', 'camera']
   }).then(res => {
     const arr = res.tempFiles.map(item => ({ file: item }))
-    scaleImgArr(component, arr, 0, (imgArr) => {
+    scaleImgArr(arr, 0, (imgArr) => {
       fn && fn(imgArr)
     })
   }).catch(err => {
@@ -82,38 +81,37 @@ export const saveData = ({ service, args, onSuc, onFail, showLoad }) => {
  * 裁剪图片
  * @see https://github.com/NervJS/taro/issues/4127
  * @param tpmFile
- * @param component
  * @param callback
  */
-export const scaleImg = (tpmFile, component, callback) => {
+export const scaleImg = (tpmFile, callback) => {
   const query = Taro.createSelectorQuery()
-  query.select('.' + component.current.className)
+  query.select('.photo_canvas')
   .fields({ node: true, size: true })
   .exec((res) => {
-    const canvas = res[0].node
-  
+    const { node, width, height } = res[0]
+
     // 解决PC打开小程序无法获得node的问题，直接返回元数据，不进行裁剪
-    if (!canvas) {
+    if (!node) {
       callback(tpmFile)
       return
     }
-    const ctx = canvas.getContext('2d')
-    const img = canvas.createImage()
-    
-    canvas.width = res[0].width
-    canvas.height = res[0].height
-    
+    const ctx = node.getContext('2d')
+    const img = node.createImage()
+
+    node.width = width
+    node.height = height
+
     img.onload = () => {
       if (img.width <= maxWidth) {
         callback(tpmFile)
         return
       }
-      
+
       const canvasHeight = img.height / img.width * maxWidth
-      
+
       ctx.drawImage(img, 0, 0, maxWidth, canvasHeight)
       Taro.canvasToTempFilePath({
-        canvas,
+        canvas: node,
         width: maxWidth,
         height: canvasHeight,
         success: rr => {
@@ -121,7 +119,7 @@ export const scaleImg = (tpmFile, component, callback) => {
         }
       })
     }
-    
+
     img.src = tpmFile
   })
 }
@@ -129,7 +127,6 @@ export const scaleImg = (tpmFile, component, callback) => {
 /**
  * 循环裁剪图片
  * @see https://github.com/NervJS/taro/issues/4127
- * @param component
  * @param res
  * [
  *  {file: {path: string}},
@@ -140,22 +137,22 @@ export const scaleImg = (tpmFile, component, callback) => {
  * @param imgArr
  * [path: string, path: string]
  */
-export const scaleImgArr = (component, res, index, callback, imgArr = []) => {
+export const scaleImgArr = (res, index, callback, imgArr = []) => {
   if (index < res.length) {
     const img = res[index]
     if (img.file) {
-      scaleImg(img.file.path, component, rs => {
+      scaleImg(img.file.path, rs => {
         if (rs) {
           img.url = rs
           img.file.path = rs
         }
         imgArr.push(rs || img.url)
-        scaleImgArr(component, res, index + 1, callback, imgArr)
+        scaleImgArr(res, index + 1, callback, imgArr)
       })
       return
     }
     imgArr.push(img.url)
-    scaleImgArr(component, res, index + 1, callback, imgArr)
+    scaleImgArr(res, index + 1, callback, imgArr)
     return
   }
   callback(imgArr)
@@ -174,11 +171,11 @@ export const scaleImgArr = (component, res, index, callback, imgArr = []) => {
 export const uploadImages = async (images, onCanTap) => {
   const imgUrls = []
   let isFail = false
-  
+
   if (!images) {
     return { images: [], isFail }
   }
-  
+
   onCanTap && onCanTap('disabled', true)
   showLoading('图片上传中...！')
   for (let i = 0; i < images.length; i++) { // 上传图片
@@ -198,7 +195,7 @@ export const uploadImages = async (images, onCanTap) => {
     file.url && imgUrls.push(file.url)
   }
   hideLoading()
-  
+
   return {
     imgArr: imgUrls,
     imgObj: images,
@@ -226,18 +223,19 @@ export const uploadImages = async (images, onCanTap) => {
 export const uploadImagesObj = async (value, imgKeys, onFail) => {
   let imgRes = {}
   let errKey = []
-  
+
+  // eslint-disable-next-line no-unused-vars
   for (let item of imgKeys) {
     const key = item.key || item
-    
+
     const { imgArr, isFail } = await uploadImages(item.single ? [value[key]] : value[key], onFail)
-    
+
     imgRes[key] = item.single ? imgArr[0] || '' : imgArr
     if (isFail) {
       onFail && onFail(key, imgArr)
       errKey.push(key)
     }
   }
-  
+
   return { imgRes, errKey }
 }
